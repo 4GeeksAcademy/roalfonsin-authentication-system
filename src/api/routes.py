@@ -2,13 +2,14 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
+from bcrypt import bcrypt
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
 
-@api.route('/hello', methods=['POST', 'GET'])
+@api.route('/signup', methods=['POST'])
 def handle_hello():
 
     response_body = {
@@ -16,3 +17,14 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+
+password = b"super secret password"
+# Hash a password for the first time, with a randomly-generated salt
+hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+# Check that an unhashed password matches one that has previously been
+# hashed
+if bcrypt.checkpw(password, hashed):
+    print("It Matches!")
+else:
+    print("It Does not Match :(")
