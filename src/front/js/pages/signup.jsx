@@ -1,13 +1,29 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [alertClass, setAlertClass] = useState("invisible");
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(`Username: ${username}, Email: ${email}, Password: ${password}`);
-    };
+        let the_url = "https://sturdy-carnival-7gppxqqv969frx7j-3001.app.github.dev/api/signup/"+email+"/"+password;
+        fetch(the_url, {
+            method: "POST",
+            })
+            .then((response) => {
+                if (response.status == 200){
+                    console.log("user created");
+                    navigate("/login");
+                }
+                else{
+                    console.log("user was not created");
+                    setAlertClass("visible");
+                }
+            });
+        };
 
     return (
         <div className="container">
@@ -26,6 +42,7 @@ export function Signup() {
 
                 <button type="submit" className="btn btn-success">Submit</button>
             </form>
+            <h5 className = {alertClass}>User already exist</h5>
         </div>
     );
 }
