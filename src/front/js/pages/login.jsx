@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export function Login() {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = (event) => {
@@ -13,9 +13,10 @@ export function Login() {
         <div className="container">
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
+                
                 <div className="mb-3">
-                    <label className="form-label"> Username: </label>
-                    <input type="text" className="form-control" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <label className="form-label"> Email: </label>
+                    <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 
                 <div className="mb-3">
