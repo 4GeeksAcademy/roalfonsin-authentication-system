@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 export function Signup() {
-    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -14,10 +13,6 @@ export function Signup() {
         <div className="container">
             <h2>Signup</h2>
             <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label className="form-label"> Username: </label>
-                    <input type="text" className="form-control" value={username} onChange={(e) => setUsername(e.target.value)} />
-                </div>
                 
                 <div className="mb-3">
                     <label className="form-label"> Email: </label>
