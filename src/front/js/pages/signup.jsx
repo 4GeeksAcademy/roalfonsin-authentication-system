@@ -9,7 +9,7 @@ export function Signup() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        let the_url = "https://sturdy-carnival-7gppxqqv969frx7j-3001.app.github.dev/api/signup/"+email+"/"+password;
+        let the_url = "https://musical-bassoon-rjppx99gjg6h59pj-3001.app.github.dev/api/signup/"+email+"/"+password;
         fetch(the_url, {
             method: "POST",
             })
