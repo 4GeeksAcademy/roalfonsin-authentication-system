@@ -6,7 +6,20 @@ export function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(`Username: ${username}, Email: ${email}, Password: ${password}`);
+        let the_url = "https://musical-bassoon-rjppx99gjg6h59pj-3001.app.github.dev/api/login/"+email+"/"+password;
+        fetch(the_url, {
+            method: "GET",
+            })
+            .then((response) => {
+                if (response.status == 200){
+                    console.log("user created");
+                    navigate("/login");
+                }
+                else{
+                    console.log("user was not created");
+                    setAlertClass("visible");
+                }
+            });
     };
 
     return (
