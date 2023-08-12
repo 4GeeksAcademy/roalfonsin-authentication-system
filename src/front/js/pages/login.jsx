@@ -6,7 +6,7 @@ export function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        let the_url = "https://musical-bassoon-rjppx99gjg6h59pj-3001.app.github.dev/api/login/"+email+"/"+password;
+        let the_url = "https://animated-lamp-gg77p99q9jw3pgr9-3001.app.github.dev/api/login/"+email+"/"+password;
         fetch(the_url, {
             method: "GET",
             })

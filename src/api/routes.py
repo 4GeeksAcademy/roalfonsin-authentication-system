@@ -19,8 +19,7 @@ def handle_signup(new_email, new_password):
     if len(list(user_query)) != 0:
         raise APIException('User already exist', 400)
 
-    bytes_password  =  bytes(new_password, 'utf-8')
-    hashed_password = bcrypt.hashpw(bytes_password, bcrypt.gensalt())
+    hashed_password = bcrypt.hashpw(new_password.encode('utf8'), bcrypt.gensalt()).decode('utf8')
     new_user = User(email = new_email, password = hashed_password)
     db.session.add(new_user)
     db.session.commit()
@@ -37,7 +36,7 @@ def handle_login(user_email, user_password):
     if len(list(user_query)) == 0:
         raise APIException('User does not exist', 405)
 
-    database_password = user_query[0].password
+    database_password = bytes(user_query[0].password, 'utf-8')
     bytes_password  =  bytes(user_password, 'utf-8')
     if bcrypt.checkpw(bytes_password, database_password):
         response_body = {
